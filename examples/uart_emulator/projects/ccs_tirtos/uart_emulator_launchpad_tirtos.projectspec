@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectSpec>
+    <project
+        title="uart_emulator_launchpad_tirtos"
+        name="uart_emulator_launchpad_tirtos"
+        configurations="Debug"
+        toolChain="TICLANG"
+        device="Cortex M.CC2642R1F"
+        ignoreDefaultDeviceSettings="true"
+        ignoreDefaultCCSSettings="true"
+        products="com.ti.SIMPLELINK_CC13XX_CC26XX_SDK:8.30.1.1;sysconfig:1.23.0"
+        linkerCommandFile=""
+        compilerBuildOptions=" -IC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/source/ti/devices/cc13x2_cc26x2 -IC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/kernel/tirtos7/packages -IC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/source -IC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/source/ti/posix/ticlang -DDeviceFamily_CC26X2 -Oz -gdwarf-3 -mcpu=cortex-m4 -march=armv7e-m -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16"
+        linkerBuildOptions=" -LC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/source -LC:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/kernel/tirtos7/packages -l${PROJECT_BUILD_DIR}/syscfg/ti_utils_build_linker.cmd.genlibs --rom_model -x -lti/devices/cc13x2_cc26x2/driverlib/bin/ticlang/driverlib.lib"
+        connection="TIXDS110_Connection.xml"
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--board /ti/boards/CC26X2R1_LAUNCHXL --product C:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/.metadata/product.json --compiler ticlang"
+        description="UART Emulator (TI-RTOS)"
+    >
+
+        <property name="isHybrid" value="true"/>
+
+        <file path="./ex_common.syscfg" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/scif.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/scif.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/scif_framework.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/scif_framework.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/scif_osal_tirtos.h" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="./../../source/main_tirtos.c" openOnCreation="false" excludeFromBuild="false" action="link" targetDirectory=".">
+        </file>
+        <file path="C:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01/examples/rtos/CC26X2R1_LAUNCHXL/drivers/empty/tirtos7/ticlang/cc13x2_cc26x2_tirtos7.cmd" openOnCreation="false" excludeFromBuild="false" action="copy" targetDirectory=".">
+        </file>
+
+    </project>
+</projectSpec>

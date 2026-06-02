@@ -11,13 +11,15 @@ Each folder contains an `.scp` project file and typically a CCS project. Open th
 
 ## ADC Examples
 
-### `adc_data_logger`
-**Description**: Samples an ADC input at a regular interval and buffers multiple samples before alerting the System CPU. Demonstrates output buffer with N entries rather than one-at-a-time alerts.
+### `adc_data_logger_launchpad`
+**Description**: Samples a single ADC channel (DIO23 on the LaunchPad) at a fixed RTC interval and stores values in a 128-entry circular buffer in AUX RAM. The Sensor Controller maintains `output.head`; the System CPU never receives an alert. Instead it wakes periodically, compares `head` against a local `tail`, and drains new samples.
 
-- **Resources**: ADC, RTC Scheduling, System CPU Alert
-- **Alert pattern**: Alerts when a buffer of N samples is full
-- **System CPU role**: Reads batch of samples, logs or transmits over UART
-- **Chip support**: CC2650, CC2640R2, CC1310, CC1350, CC2652R, CC1352R
+- **Resources**: ADC, RTC Scheduling (no System CPU Alert resource is exercised — the alert callback is empty)
+- **Alert pattern**: None. Polled circular buffer (`SCIF_ADC_DATA_LOGGER_BUFFER_SIZE = 128`)
+- **Output struct**: `output.head` (uint16_t), `output.pSamples[128]` (uint16_t)
+- **System CPU role**: Wakes every 10 s, transmits new samples plus count/average/min/max over UART (57600 8-N-1)
+- **Chip support** (per `main.c` `#ifdef` cascade): CC2650, CC2640R2, CC1310, CC1350, CC2642R1F, CC2652R, CC2652RSIP, CC1352R, CC1352P1F3, CC1352P7, CC2652P1F, CC2652PSIP, CC2652P7, CC2672R3, CC2672P3
+- **Variants shipped**: `main.c` (OSAL None) and `main_tirtos.c` (TI-RTOS, uses `UART2`)
 
 ### `adc_window_monitor`
 **Description**: Monitors an ADC input and only generates an ALERT when the voltage exits a configurable window [low, high]. Avoids unnecessary wakeups for in-range readings.

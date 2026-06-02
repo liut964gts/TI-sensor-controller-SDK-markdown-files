@@ -44,9 +44,13 @@ Version 10+ recommended. [ti.com/tool/CCSTUDIO](https://www.ti.com/tool/CCSTUDIO
 1. Open Sensor Controller Studio.
 2. **File → New** to create a new project.
 3. In the project panel on the left:
-   - Select **Device**: choose your chip (e.g., CC2650F128)
-   - Select **Package**: e.g., QFN48 7×7
-   - Set **Operating System**: None (OSAL None) for bare-metal
+   - Select **Device**: choose your chip (e.g., CC2650F128, CC2642R1F)
+   - Select **Package**: e.g., QFN48 7×7 RGZ
+   - Set **Operating System**: one of
+     - **None** — bare-metal; generates `scif_osal_none.c/.h`. Application registers its own ISRs and (on devices that need it) calls `scifOsalEnableAuxDomainAccess()`.
+     - **TI-RTOS** — generates `scif_osal_tirtos.c/.h`. SCIF uses `Hwi_construct`, `Semaphore_pend`, etc. Application calls `scifOsalInit()` from the RTOS task before `scifInit()`.
+     - **TI Driver Porting Layer (TI-DPL)** — generates `scif_osal_tidpl.c/.h`. Use when integrating with SimpleLink SDK drivers that already depend on DPL primitives.
+   - The choice determines which `scif_osal_*.c/.h` pair you must copy from `resources/osal_defs/` and which header `scif.h` will `#include`.
 4. Click the **"+"** button on the Tasks panel to add a task.
 5. In the task editor, fill in four code blocks: **Initialize**, **Execute**, **Terminate**, and optionally **Event Handlers**.
 6. Select resources in the **Resources** panel (ADC, I²C, etc.). Each resource adds API functions to your task code.

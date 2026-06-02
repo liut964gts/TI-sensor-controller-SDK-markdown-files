@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iarUserArgVars>
+  <group active="true" name="SIMPLELINK_CC13XX_CC26XX_SDK">
+    <variable>
+      <name>SYSCONFIG_ROOT</name>
+      <value>C:/ti/sysconfig_1.23,0</value>
+    </variable>
+    <variable>
+      <name>SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR</name>
+      <value>C:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01</value>
+    </variable>
+    <variable>
+      <name>COM_TI_SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR</name>
+      <value>C:/ti/simplelink_cc13xx_cc26xx_sdk_8_30_01_01</value>
+    </variable>
+  </group>
+</iarUserArgVars>
