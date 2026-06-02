@@ -2,6 +2,9 @@
 
 Context files for working with the TI Sensor Controller on CC13xx/CC26xx devices.
 
+# Assembly Reference
+https://software-dl.ti.com/lprf/sensor_controller_studio/docs/cc13x2_cc26x2_help/html/assembly_language_reference.html
+
 ## Contents
 
 | File | Contents |
